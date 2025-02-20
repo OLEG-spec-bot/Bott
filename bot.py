@@ -14,7 +14,7 @@ async def on_start():
     dp.include_router(router)
 
     # Устанавливаем webhook URL (в зависимости от вашего домена на Render)
-    webhook_url = "https://your-app-name.onrender.com/{BOT_TOKEN}"
+    webhook_url = "https://Bott.onrender.com/{BOT_TOKEN}"
 
     # Настроим webhook
     await bot.set_webhook(webhook_url)
