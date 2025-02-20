@@ -22,7 +22,8 @@ async def main():
     app.add_routes([web.get('/', on_start)])
 
     # Устанавливаем вебхук
-    webhook_url = 'https://yourdomain.com/webhook'
+    webhook_url = 'https://Bott.onrender.com
+'
     await bot.set_webhook(webhook_url)
 
     # Запуск веб-сервера на порту 8000
