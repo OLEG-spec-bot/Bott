@@ -23,7 +23,6 @@ async def main():
 
     # Устанавливаем вебхук
     webhook_url = 'https://Bott.onrender.com'
-'
     await bot.set_webhook(webhook_url)
 
     # Запуск веб-сервера на порту 8000
