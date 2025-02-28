@@ -3,16 +3,18 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiohttp import web
 from config import BOT_TOKEN
-from handlers import router
+from handlers import router  # Подключаем router из handlers
 
 bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher(bot)
 
 async def on_start(request):
     # Получаем данные из запроса
     data = await request.json()
     update = types.Update(**data)
-    # Обрабатываем обновления
-    await bot.process_new_updates([update])
+    
+    # Обрабатываем обновления через Dispatcher
+    await dp.process_update(update)
     return web.Response()
 
 async def set_webhook():
@@ -23,11 +25,7 @@ async def set_webhook():
     print(f"Webhook установлен на {webhook_url}")
 
 async def main():
-    dp = Dispatcher()
-    dp.include_router(router)
-    
-    # Устанавливаем webhook
-    await set_webhook()
+    dp.include_router(router)  # Включаем маршруты из router
 
     # Настроим aiohttp для обработки webhook запросов
     app = web.Application()
