@@ -1,4 +1,5 @@
 import asyncio
+import os
 from aiogram import Bot, Dispatcher, types
 from aiohttp import web
 from config import BOT_TOKEN
