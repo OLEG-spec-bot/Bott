@@ -36,8 +36,9 @@ async def main():
     # Запускаем aiohttp сервер
     runner = web.AppRunner(app)
     await runner.setup()
-    site = web.TCPSite(runner, '0.0.0.0', 8080)  # Слушаем на порту 8080
-    await site.start()
+    port = int(os.environ.get('PORT', 8080))  # Используем порт, предоставленный Render, по умолчанию 8080
+    site = web.TCPSite(runner, '0.0.0.0', port)
+
 
     # Ожидаем до остановки
     await asyncio.Event().wait()
