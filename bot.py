@@ -16,7 +16,7 @@ async def on_start(request):
 
 async def set_webhook():
     # URL для webhook на Render
-    webhook_url = "https://<your-render-url>.onrender.com/webhook"  # Замените на ваш URL
+    webhook_url = "https://bott-yxg0.onrender.com"  # Замените на ваш URL
     # Устанавливаем webhook
     await bot.set_webhook(webhook_url)
     print(f"Webhook установлен на {webhook_url}")
