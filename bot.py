@@ -5,8 +5,14 @@ from aiohttp import web
 from config import BOT_TOKEN
 from handlers import router  # Подключаем router из handlers
 
+# Создаем объект Bot
 bot = Bot(token=BOT_TOKEN)
+
+# Инициализируем Dispatcher через bot
 dp = Dispatcher(bot)
+
+# Включаем маршруты из router
+dp.include_router(router)
 
 async def on_start(request):
     # Получаем данные из запроса
@@ -19,14 +25,12 @@ async def on_start(request):
 
 async def set_webhook():
     # URL для webhook на Render
-    webhook_url = "https://bott-yxg0.onrender.com/webhook"  # Замените на ваш URL
+    webhook_url = "https://https://bott-yxg0.onrender.com/webhook"  # Замените на ваш URL
     # Устанавливаем webhook
     await bot.set_webhook(webhook_url)
     print(f"Webhook установлен на {webhook_url}")
 
 async def main():
-    dp.include_router(router)  # Включаем маршруты из router
-
     # Настроим aiohttp для обработки webhook запросов
     app = web.Application()
     app.router.add_post('/webhook', on_start)  # Обработка запросов от Telegram на /webhook
@@ -47,5 +51,6 @@ if __name__ == '__main__':
         asyncio.run(main())
     except KeyboardInterrupt:
         print("Бот остановлен")
+
 
 
